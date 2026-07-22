@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: mini-erp-backend
+    runtime: node
+    repo: https://github.com/akshaya1221/mini-erp-portal
+    branch: master
+    rootDir: backend
+    buildCommand: npm install && npm run prisma:generate && npm run build
+    startCommand: npm start
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 4000
