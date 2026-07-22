@@ -1,0 +1,379 @@
+{
+  "info": {
+    "name": "Mini ERP + CRM Portal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Full API request suite for testing authentication, RBAC, customers, products, stock movements, and delivery challans."
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"Password123!\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login Sales",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"sales@example.com\",\n  \"password\": \"Password123!\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login Warehouse",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"warehouse@example.com\",\n  \"password\": \"Password123!\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Login Accounts",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"accounts@example.com\",\n  \"password\": \"Password123!\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "List Customers",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "http://localhost:4000/customers?search=&status=",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["customers"],
+              "query": [
+                { "key": "search", "value": "" },
+                { "key": "status", "value": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ramesh Shah\",\n  \"mobile\": \"9898989898\",\n  \"email\": \"ramesh@example.com\",\n  \"businessName\": \"Shah Steels\",\n  \"gstNumber\": \"29ABCDE1234F1Z5\",\n  \"customerType\": \"WHOLESALE\",\n  \"address\": \"Mumbai\",\n  \"status\": \"ACTIVE\",\n  \"followUpDate\": \"2026-07-30\",\n  \"notes\": \"Interested in steel structural beams\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/customers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["customers"]
+            }
+          }
+        },
+        {
+          "name": "Get Customer Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "http://localhost:4000/customers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["customers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Add Customer Note",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"Discussed wholesale pricing. Quotation prepared.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/customers/1/notes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["customers", "1", "notes"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "List Products",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "http://localhost:4000/products?search=",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["products"],
+              "query": [
+                { "key": "search", "value": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Iron Rods 12mm\",\n  \"sku\": \"IR-012\",\n  \"category\": \"Metal\",\n  \"unitPrice\": 180.00,\n  \"currentStock\": 80,\n  \"minStockAlert\": 15,\n  \"warehouseLocation\": \"A4\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/products",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["products"]
+            }
+          }
+        },
+        {
+          "name": "Update Product details",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Iron Rods 12mm - Premium\",\n  \"sku\": \"IR-012\",\n  \"category\": \"Metal\",\n  \"unitPrice\": 195.00,\n  \"currentStock\": 80,\n  \"minStockAlert\": 15,\n  \"warehouseLocation\": \"A4\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/products/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["products", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Product Stock Movements",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "http://localhost:4000/products/1/movements",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["products", "1", "movements"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stock Movements",
+      "item": [
+        {
+          "name": "Adjust Stock",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": 1,\n  \"quantityChanged\": 20,\n  \"movementType\": \"IN\",\n  \"reason\": \"Received fresh batch from supplier\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/stock-movements",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["stock-movements"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Challans",
+      "item": [
+        {
+          "name": "List Challans",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "http://localhost:4000/challans?search=&status=",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["challans"],
+              "query": [
+                { "key": "search", "value": "" },
+                { "key": "status", "value": "" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Challan (Draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 1,\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 5\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:4000/challans",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["challans"]
+            }
+          }
+        },
+        {
+          "name": "Get Challan Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "http://localhost:4000/challans/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["challans", "1"]
+            }
+          }
+        },
+        {
+          "name": "Confirm Challan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "http://localhost:4000/challans/1/confirm",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["challans", "1", "confirm"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Challan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "url": {
+              "raw": "http://localhost:4000/challans/1/cancel",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["challans", "1", "cancel"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

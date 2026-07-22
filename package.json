@@ -1,0 +1,11 @@
+{
+  "name": "mini-erp-portal",
+  "private": true,
+  "workspaces": ["backend", "frontend"],
+  "scripts": {
+    "backend:dev": "npm --prefix backend run dev",
+    "backend:build": "npm --prefix backend run build",
+    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build"
+  }
+}
