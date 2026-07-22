@@ -8,7 +8,8 @@ import { productRouter } from './routes/products';
 import { challanRouter } from './routes/challans';
 import { stockMovementRouter } from './routes/stockMovements';
 
-dotenv.config();
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 export const prisma = new PrismaClient();
 const app = express();
