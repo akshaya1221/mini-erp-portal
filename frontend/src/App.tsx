@@ -2,7 +2,7 @@ import { Routes, Route, Navigate, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
 interface User { id: number; name: string; email: string; role: string; }
 
